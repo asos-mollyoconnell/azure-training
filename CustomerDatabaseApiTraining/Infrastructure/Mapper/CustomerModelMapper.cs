@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Models;
+using AutoMapper;
 
-namespace Application.Contracts
+namespace Infrastructure.Mapper
 {
-    public interface ICustomerRepository
+    public  class CustomerModelMapper : Profile
     {
-        CustomerModel GetById
+
     }
 }

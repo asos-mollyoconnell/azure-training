@@ -2,7 +2,7 @@
 using MediatR;
 using Domain.Models;
 
-namespace Application.Customers.Queries
+namespace Application.Customers.GetAllCustomers
 {
     public record GetAllCustomersQuery : IRequest<IEnumerable<CustomerModel>>;
 }
