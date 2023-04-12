@@ -1,9 +1,8 @@
-
 using Domain.Models;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApi
+namespace CustomerWebApi
 {
     public class Program
     {

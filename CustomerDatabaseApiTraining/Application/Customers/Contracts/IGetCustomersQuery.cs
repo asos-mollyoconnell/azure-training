@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Customers.Queries.Contracts
+namespace Application.Customers.Contracts
 {
     public interface IGetCustomersQuery
     {

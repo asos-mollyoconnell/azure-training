@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
 
-namespace Application.Contracts
+namespace Application.Customers.Contracts
 {
     public interface ICustomerRepository
     {

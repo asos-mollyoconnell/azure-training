@@ -22,5 +22,7 @@ namespace CustomerData.Models
         public string Country { get; set; }
         [Required]
         public string Postcode { get; set; }
+        public virtual Customer Customer { get; set; }
+
     }
 }

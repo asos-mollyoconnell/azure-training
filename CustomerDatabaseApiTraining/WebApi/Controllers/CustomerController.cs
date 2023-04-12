@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-using Application.Customers.Queries.Contracts;
+using Application.Customers.Contracts;
 using Domain.Models;
 using Infrastructure.Data;
 using MediatR;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApi.Controllers
+namespace CustomerWebApi.Controllers
 {
     [Route("api/customers")]
     [ApiController]

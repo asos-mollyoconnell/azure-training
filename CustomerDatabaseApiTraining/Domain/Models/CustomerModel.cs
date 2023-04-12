@@ -7,43 +7,16 @@ namespace Domain.Models
         public int Id { get; set; }
 
         [Required]
-        public string Forename
-        {
-            get => Forename;
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-            }
-        }
+        public string Forename { get; set; }
 
         [Required]
-        public string Surname
-        {
-            get => Surname;
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-            }
-        }
+        public string Surname { get; set; }
         [Required]
         public DateTime DateOfBirth { get; set; }
         [Required]
-        public string Email
-        {
-            get => Email;
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-            }
-        }
+        public string Email { get; set; }
+
+        public virtual AddressModel Address { get; set; }
+        public virtual ContactModel Contact { get; set; }
     }
 }

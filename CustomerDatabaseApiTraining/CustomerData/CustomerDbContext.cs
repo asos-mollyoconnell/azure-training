@@ -4,15 +4,15 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Models;
+using CustomerData.Models;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace Infrastructure.Data
+namespace CustomerData
 {
     public class CustomerDbContext : DbContext
     {
-        public CustomerDbContext(DbContextOptions<CustomerDbContext> options) : base(options){}
+        public CustomerDbContext(DbContextOptions<CustomerDbContext> options) : base(options) { }
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Address> Addresses { get; set; }

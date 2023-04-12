@@ -17,5 +17,7 @@ namespace CustomerData.Models
         [Required]
         public int MobileNumber { get; set; }
         public int? HomeNumber { get; set; }
+        public virtual Customer Customer { get; set; }
+
     }
 }
