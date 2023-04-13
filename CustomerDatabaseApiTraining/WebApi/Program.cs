@@ -1,5 +1,6 @@
-using Domain.Models;
-using Infrastructure.Data;
+using Application.Extensions;
+using CustomerData;
+using Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace CustomerWebApi
@@ -17,7 +18,12 @@ namespace CustomerWebApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<CustomerDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddInfrastucture();
+
+            builder.Services.AddApplication();
+
+
+            //builder.Services.AddDbContext<CustomerDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             //builder.Services.AddDbContext<CanonicalCustomerDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerCanonicalDb")));
 
             //builder.Services.AddSingleton<Customer>();

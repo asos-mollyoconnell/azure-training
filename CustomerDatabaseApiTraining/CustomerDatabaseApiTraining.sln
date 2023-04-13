@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerWebApi", "WebApi\CustomerWebApi.csproj", "{0BF35C09-CC15-4471-B69D-9D26B420E250}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerData", "CustomerData\CustomerData.csproj", "{17ED23F1-EBAC-453D-9FB8-E357A03682E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerData", "CustomerData\CustomerData.csproj", "{17ED23F1-EBAC-453D-9FB8-E357A03682E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{069E3C48-B435-4314-8BB1-D6D888214245}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{798FA411-41C2-49D6-9EC6-3CCE1E46E7FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +46,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0BF35C09-CC15-4471-B69D-9D26B420E250} = {069E3C48-B435-4314-8BB1-D6D888214245}
+		{17ED23F1-EBAC-453D-9FB8-E357A03682E4} = {798FA411-41C2-49D6-9EC6-3CCE1E46E7FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B07B780-FFD2-4B3E-B9B8-35DAAC19B26F}

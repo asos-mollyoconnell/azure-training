@@ -28,7 +28,7 @@ namespace CustomerData
         //        {
         //            Id = 1,
         //            Forename = "Molly",
-        //            Surname = "O'Connell",
+        //            Surname = "OConnell",
         //            Email = "email@email.com",
         //            DateOfBirth = DateTime.Parse("04/10/1998 12:11:00")
         //        });

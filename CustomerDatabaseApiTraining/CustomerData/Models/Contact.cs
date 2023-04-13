@@ -10,14 +10,14 @@ namespace CustomerData.Models
 {
     public class Contact
     {
-        [Key]
+   
         public int Id { get; set; }
-        [ForeignKey("customerId")]
+      
         public int CustomerId { get; set; }
-        [Required]
+     
         public int MobileNumber { get; set; }
         public int? HomeNumber { get; set; }
-        public virtual Customer Customer { get; set; }
+  
 
     }
 }

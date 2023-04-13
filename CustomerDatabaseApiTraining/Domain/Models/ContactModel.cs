@@ -10,11 +10,11 @@ namespace Domain.Models
 {
     public class ContactModel
     {
-        [Key]
+       
         public int Id { get; set; }
-        [ForeignKey("customerId")]
+      
         public int CustomerId { get; set; }
-        [Required]
+     
         public int MobileNumber { get; set; }
         public int? HomeNumber { get; set; }
     }

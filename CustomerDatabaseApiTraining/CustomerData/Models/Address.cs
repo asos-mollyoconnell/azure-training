@@ -11,18 +11,18 @@ namespace CustomerData.Models
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
-        [Required]
-        public string Line1 { get; set; }
+       
+        public string? Line1 { get; set; }
         public string? Line2 { get; set; }
-        [Required]
-        public string City { get; set; }
-        [Required]
-        public string County { get; set; }
-        [Required]
-        public string Country { get; set; }
-        [Required]
-        public string Postcode { get; set; }
-        public virtual Customer Customer { get; set; }
+      
+        public string? City { get; set; }
+   
+        public string? County { get; set; }
+    
+        public string? Country { get; set; }
+     
+        public string? Postcode { get; set; }
+     
 
     }
 }

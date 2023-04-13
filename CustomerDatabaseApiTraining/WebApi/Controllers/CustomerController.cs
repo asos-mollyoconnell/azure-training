@@ -1,23 +1,52 @@
-﻿using System.Runtime.CompilerServices;
-using Application.Customers.Contracts;
-using Domain.Models;
-using Infrastructure.Data;
+﻿using Application.Customers.GetById;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CustomerWebApi.Controllers
 {
-    [Route("api/customers")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CustomerController : ControllerBase
     {
-        ////private readonly CustomerDbContext _context;
-        //// private readonly IMediator _mediator;l
+
+        // private readonly IMediator _mediator;
 
         //private readonly ISender _sender;
-        //public CustomerController(ISender sender) => _sender = sender;
+
+        //public CustomerController( ISender sender)
+        //{
+        //    _sender = sender;
+        //}
+
+        private readonly IMediator _mediator;
+
+        public CustomerController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+        // public CustomerController(ISender sender) => _sender = sender;
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCustomerById(int id)
+        {
+
+            var request = new GetCustomerByIdRequest(id);
+            var response = await _mediator.Send(request);
+
+            return Ok(response);
+
+        }
+
+
+        //[HttpPost]
+        //public async Task<ActionResult<List<Customer>>> AddCustomer(Customer customer)
+        //{
+        //    _context.Customers.Add(customer);
+        //    await _context.SaveChangesAsync();
+
+        //    return Ok(await _context.Customers.ToListAsync());
+        //}
+
 
         //[HttpGet]
         //public async Task<ActionResult> GetCustomers()
@@ -28,28 +57,28 @@ namespace CustomerWebApi.Controllers
         //}
 
 
-        public readonly CustomerDbContext _context;
+        //public readonly CustomerDbContext _context;
 
-        public CustomerController(CustomerDbContext context)
-        {
-            _context = context;
-        }
+        //public CustomerController(CustomerDbContext context)
+        //{
+        //    _context = context;
+        //}
 
 
-        [HttpGet]
-        public async Task<IEnumerable<CustomerModel>> Get()
-        {
-            return await _context.Customers.ToListAsync();
-        }
+        //[HttpGet]
+        //public async Task<IEnumerable<CustomerModel>> Get()
+        //{
+        //    return await _context.Customers.ToListAsync();
+        //}
 
-        [HttpGet("id")]
-        [ProducesResponseType(typeof(CustomerModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var customer = await _context.Customers.FindAsync(id);
+        //[HttpGet("id")]
+        //[ProducesResponseType(typeof(CustomerModel), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<IActionResult> GetById(int id)
+        //{
+        //    var customer = await _context.Customers.FindAsync(id);
 
-            return customer == null ? NotFound() : Ok(customer);
-        }
+        //    return customer == null ? NotFound() : Ok(customer);
+        //}
     }
 }

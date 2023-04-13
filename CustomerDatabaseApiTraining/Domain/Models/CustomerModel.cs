@@ -6,17 +6,16 @@ namespace Domain.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        public string Forename { get; set; }
+        public string? Forename { get; set; }
 
-        [Required]
-        public string Surname { get; set; }
-        [Required]
+     
+        public string? Surname { get; set; }
+     
         public DateTime DateOfBirth { get; set; }
-        [Required]
-        public string Email { get; set; }
+      
+        public string? Email { get; set; }
 
-        public virtual AddressModel Address { get; set; }
-        public virtual ContactModel Contact { get; set; }
+        public  AddressModel? Address { get; set; }
+        public  ContactModel? Contact { get; set; }
     }
 }

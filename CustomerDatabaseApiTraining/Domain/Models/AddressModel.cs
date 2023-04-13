@@ -11,66 +11,17 @@ namespace Domain.Models
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
-        [Required]
-        public string Line1
-        {
-            get => Line1;
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-            }
-        }
+
+        public string? Line1 { get; set; }
         public string? Line2 { get; set; }
-        [Required]
-        public string City
-        {
-            get => City;
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-            }
-        }
-        [Required]
-        public string County
-        {
-            get => County;
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-            }
-        }
-        [Required]
-        public string Country
-        {
-            get => Country;
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-            }
-        }
-        [Required]
-        public string Postcode
-        {
-            get => Postcode;
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-            }
-        }
+
+        public string? City { get; set; }
+
+        public string? County { get; set; }
+
+        public string? Country { get; set; }
+
+        public string? Postcode { get; set; }
+
     }
 }

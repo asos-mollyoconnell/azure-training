@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Customers.Contracts;
 using AutoMapper;
+using CustomerData;
 using Domain.Models;
-using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    public class CustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly CustomerDbContext _customerDbContext;
         private readonly IMapper _mapper;
@@ -28,5 +29,6 @@ namespace Infrastructure.Repositories
                  .Include(c => c.Contact)
                  .Single(c => c.Id == id));
         }
+
     }
 }
