@@ -9,23 +9,23 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure.Migrations
+namespace CustomerData.Migrations
 {
     [DbContext(typeof(CustomerDbContext))]
-    [Migration("20230411150258_InitialCreateDb")]
-    partial class InitialCreateDb
+    [Migration("20230417091714_Initial Datbase Setup")]
+    partial class InitialDatbaseSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Models.Address", b =>
+            modelBuilder.Entity("CustomerData.Models.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,37 +34,48 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("County")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Line1")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Line2")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Postcode")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
+
                     b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            City = "city",
+                            Country = "country",
+                            County = "county",
+                            CustomerId = 2,
+                            Line1 = "line1",
+                            Line2 = "line 2",
+                            Postcode = "postcode"
+                        });
                 });
 
-            modelBuilder.Entity("Domain.Models.Contact", b =>
+            modelBuilder.Entity("CustomerData.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,10 +94,22 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
+
                     b.ToTable("Contacts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            CustomerId = 2,
+                            HomeNumber = 1234567890,
+                            MobileNumber = 987654321
+                        });
                 });
 
-            modelBuilder.Entity("Domain.Models.Customer", b =>
+            modelBuilder.Entity("CustomerData.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,20 +121,52 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Forename")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            DateOfBirth = new DateTime(1998, 10, 4, 12, 11, 0, 0, DateTimeKind.Unspecified),
+                            Email = "email@email.com",
+                            Forename = "Molly",
+                            Surname = "OConnell"
+                        });
+                });
+
+            modelBuilder.Entity("CustomerData.Models.Address", b =>
+                {
+                    b.HasOne("CustomerData.Models.Customer", null)
+                        .WithOne("Address")
+                        .HasForeignKey("CustomerData.Models.Address", "CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CustomerData.Models.Contact", b =>
+                {
+                    b.HasOne("CustomerData.Models.Customer", null)
+                        .WithOne("Contact")
+                        .HasForeignKey("CustomerData.Models.Contact", "CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CustomerData.Models.Customer", b =>
+                {
+                    b.Navigation("Address");
+
+                    b.Navigation("Contact");
                 });
 #pragma warning restore 612, 618
         }

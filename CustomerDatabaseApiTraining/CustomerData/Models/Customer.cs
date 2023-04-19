@@ -16,8 +16,8 @@ namespace CustomerData.Models
     
         public string? Email { get; set; }
 
-        public virtual Address? Address { get; set; }
-        public virtual Contact? Contact { get; set; }
+        public  Address? Address { get; set; }
+        public  Contact? Contact { get; set; }
 
     }
 }

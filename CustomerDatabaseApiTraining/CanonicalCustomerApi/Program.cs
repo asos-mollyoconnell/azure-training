@@ -1,9 +1,9 @@
 using Application.Extensions;
-using CustomerData;
+using CanonicalCustomerData;
 using Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace CustomerWebApi
+namespace CanonicalCustomerApi
 {
     public class Program
     {
@@ -19,17 +19,10 @@ namespace CustomerWebApi
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddInfrastructure();
-
             builder.Services.AddApplication();
 
+            // builder.Services.AddDbContext<CanonicalCustomerDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("CanonicalDb")));
 
-            //builder.Services.AddDbContext<CustomerDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            //builder.Services.AddDbContext<CanonicalCustomerDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerCanonicalDb")));
-
-            //builder.Services.AddSingleton<Customer>();
-            //builder.Services.AddSingleton<Address>();
-            //builder.Services.AddSingleton<Contact>();
-            //builder.Services.AddSingleton<CanonicalCustomers>();
 
             var app = builder.Build();
 

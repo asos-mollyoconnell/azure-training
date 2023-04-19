@@ -8,9 +8,9 @@ using AutoMapper;
 using CustomerData.Models;
 using Domain.Models;
 
-namespace Infrastructure.Mapper
+namespace Infrastructure.Repositories
 {
-    public  class CustomerModelMapper : Profile
+    public class CustomerModelMapper : Profile
     {
         public CustomerModelMapper()
         {
