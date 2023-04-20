@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.CanonicalCustomer.Contracts;
+using Application.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Application.CanonicalCustomer.InsertCanonicalCustomer
+namespace Application.CanonicalCustomer.Commands.InsertCanonicalCustomer
 {
     public class InsertCanonicalCustomerHandler : IRequestHandler<InsertCanonicalCustomerRequest, InsertCanonicalCustomerResponse>
     {
@@ -25,16 +26,17 @@ namespace Application.CanonicalCustomer.InsertCanonicalCustomer
         {
             try
             {
-                _logger.LogInformation($"adding customer with id {request.Customer.Id}...");
+                _logger.LogInformation($"adding customer with id {request.Customer.Id} begun at {DateTime.Now.ToShortTimeString()}");
                 var customer = _repository.InsertCustomer(request.Customer);
 
-                _logger.LogInformation($"customer added");
+                _logger.LogInformation($"customer added at {DateTime.Now.ToShortTimeString()}");
                 return new InsertCanonicalCustomerResponse(customer);
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogError($"there was a problem adding customer with id {request.Customer.Id}", ex.Message);
-                throw;
+                string message =$"there was a problem adding customer with id {request.Customer.Id}";
+                _logger.LogError(message, ex);
+                throw new EntityAlreadyExistsException(message, ex);
             }
         }
     }

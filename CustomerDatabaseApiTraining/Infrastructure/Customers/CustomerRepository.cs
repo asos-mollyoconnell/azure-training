@@ -10,7 +10,7 @@ using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace Infrastructure.Repositories
+namespace Infrastructure.Customer
 {
     public class CustomerRepository : ICustomerRepository
     {

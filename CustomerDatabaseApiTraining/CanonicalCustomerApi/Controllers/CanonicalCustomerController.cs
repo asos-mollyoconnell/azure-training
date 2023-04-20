@@ -1,10 +1,13 @@
-﻿using Application.CanonicalCustomer.GetById;
-using Application.CanonicalCustomer.InsertCanonicalCustomer;
+﻿using Application.CanonicalCustomer.Commands.InsertCanonicalCustomer;
+using Application.CanonicalCustomer.Commands.UpdateCanonicalCustomer;
+using Application.CanonicalCustomer.Queries.GetById;
 using Application.Customers.GetById;
+using Application.Exceptions;
 using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace CanonicalCustomerApi.Controllers
 {
@@ -57,6 +60,31 @@ namespace CanonicalCustomerApi.Controllers
 
             _logger.LogInformation($"customer add at {DateTime.Now}");
             return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateCanonicalCustomer(CanonicalCustomerModel customer)
+        {
+            try
+            {
+                _logger.LogInformation($"updating customer with id {customer.Id} begun at {DateTime.Now}");
+                var request = new UpdateCanonicalCustomerRequest(customer);
+
+                var response = await _sender.Send(request);
+
+                _logger.LogInformation($"customer with id {customer.Id} updated at {DateTime.Now}");
+                return Ok(response);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                _logger.LogError("Entity not found");
+                return NotFound(ex.Message);
+            }
+            catch (Exception)
+            {
+                _logger.LogError("Error occurred while retrieving response");
+                return StatusCode((int)HttpStatusCode.ServiceUnavailable);
+            }
         }
     }
 }

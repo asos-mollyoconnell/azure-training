@@ -8,13 +8,13 @@ using AutoMapper;
 using CustomerData.Models;
 using Domain.Models;
 
-namespace Infrastructure.Repositories
+namespace Infrastructure.Customer
 {
     public class CustomerModelMapper : Profile
     {
         public CustomerModelMapper()
         {
-            CreateMap<CustomerModel, Customer>().ReverseMap();
+            CreateMap<CustomerModel, CustomerData.Models.Customer>().ReverseMap();
             CreateMap<AddressModel, Address>().ReverseMap();
             CreateMap<ContactModel, Contact>().ReverseMap();
         }

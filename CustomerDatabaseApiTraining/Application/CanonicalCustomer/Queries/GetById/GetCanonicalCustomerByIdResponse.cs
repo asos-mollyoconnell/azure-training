@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
-using MediatR;
 
-namespace Application.CanonicalCustomer.InsertCanonicalCustomer
+namespace Application.CanonicalCustomer.Queries.GetById
 {
-    public class InsertCanonicalCustomerRequest : IRequest<InsertCanonicalCustomerResponse>
+    public class GetCanonicalCustomerByIdResponse
     {
-        public InsertCanonicalCustomerRequest(CanonicalCustomerModel customer)
+        public GetCanonicalCustomerByIdResponse(CanonicalCustomerModel customer)
         {
             Customer = customer;
         }

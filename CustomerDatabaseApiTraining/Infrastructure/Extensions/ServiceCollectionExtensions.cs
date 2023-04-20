@@ -8,11 +8,10 @@ using CustomerData;
 using Application.Customers.Contracts;
 using CanonicalCustomerData;
 using Infrastructure.CanonicalCustomer;
-using Infrastructure.Mappers;
-using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Infrastructure.Customer;
 
 namespace Infrastructure.Extensions
 {

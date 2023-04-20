@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace Application.CanonicalCustomer.GetById
+namespace Application.CanonicalCustomer.Queries.GetById
 {
     public class GetCanonicalCustomerByIdRequest : IRequest<GetCanonicalCustomerByIdResponse>
     {

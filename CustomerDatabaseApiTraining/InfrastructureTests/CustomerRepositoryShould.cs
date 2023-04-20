@@ -1,23 +1,26 @@
 using AutoMapper;
 using CustomerData;
-using Infrastructure.Repositories;
+using Infrastructure.Customer;
+using Microsoft.Extensions.Logging;
 using Moq;
 
 namespace InfrastructureTests
 {
     public class CustomerRepositoryShould
     {
-        private readonly Mock<CustomerDbContext> _context;
-        private readonly Mock<IMapper> _mapper;
+        private readonly Mock<CustomerDbContext> _stubContext;
+        private readonly Mock<IMapper> _stubMapper;
+        private readonly Mock<ILogger<CustomerRepository>> _stubLogger;
 
         private readonly CustomerRepository _sut;
 
         public CustomerRepositoryShould()
         {
-            _context = new Mock<CustomerDbContext>();
-            _mapper = new Mock<IMapper>();
+            _stubContext = new Mock<CustomerDbContext>();
+            _stubMapper = new Mock<IMapper>();
+            _stubLogger = new Mock<ILogger<CustomerRepository>>();
 
-            _sut = new CustomerRepository(_context.Object, _mapper.Object);
+            _sut = new CustomerRepository(_stubContext.Object, _stubMapper.Object, _stubLogger.Object);
         }
 
         [Fact]

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using Application.CanonicalCustomer.Contracts;
 using Application.Customers.Contracts;
 using Application.Customers.GetById;
+using Application.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Application.CanonicalCustomer.GetById
+namespace Application.CanonicalCustomer.Queries.GetById
 {
     public class GetCanonicalCustomerByIdHandler : IRequestHandler<GetCanonicalCustomerByIdRequest, GetCanonicalCustomerByIdResponse>
     {
@@ -36,8 +37,9 @@ namespace Application.CanonicalCustomer.GetById
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogError($"no canonical customer found with Id {request.Id}", ex.Message);
-                throw ex;
+                string message = $"no canonical customer found with Id {request.Id}";
+                _logger.LogError(message, ex);
+                throw new EntityNotFoundException(message, ex);
             }
         }
     }

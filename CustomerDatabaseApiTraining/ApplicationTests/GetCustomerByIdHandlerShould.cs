@@ -2,6 +2,7 @@ using Application.Customers.Contracts;
 using Application.Customers.GetById;
 using CustomerData.Models;
 using Domain.Models;
+using Microsoft.Extensions.Logging;
 using Moq;
 
 namespace ApplicationTests
@@ -9,13 +10,15 @@ namespace ApplicationTests
     public class GetCustomerByIdHandlerShould
     {
         private readonly Mock<ICustomerRepository> _stubCustomerRepository;
+        private readonly Mock<ILogger<GetCustomerByIdHandler>> _stubLogger;
 
         private readonly GetCustomerByIdHandler _sut;
 
         public GetCustomerByIdHandlerShould()
         {
+            _stubLogger = new Mock<ILogger<GetCustomerByIdHandler>>();
             _stubCustomerRepository = new Mock<ICustomerRepository>();
-            _sut = new GetCustomerByIdHandler(_stubCustomerRepository.Object);
+            _sut = new GetCustomerByIdHandler(_stubCustomerRepository.Object, _stubLogger.Object);
         }
 
         

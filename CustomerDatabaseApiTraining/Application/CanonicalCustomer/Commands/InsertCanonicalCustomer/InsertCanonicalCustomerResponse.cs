@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
 
-namespace Application.CanonicalCustomer.InsertCanonicalCustomer
+namespace Application.CanonicalCustomer.Commands.InsertCanonicalCustomer
 {
     public class InsertCanonicalCustomerResponse
     {
@@ -15,7 +15,7 @@ namespace Application.CanonicalCustomer.InsertCanonicalCustomer
         }
 
         public CanonicalCustomerModel CanonicalCustomer { get; set; }
-        
+
 
     }
 }

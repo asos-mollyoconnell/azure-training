@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Models;
 
-namespace Infrastructure.Mappers
+namespace Infrastructure.CanonicalCustomer
 {
     public class CanonicalCustomerMapper : Profile
     {

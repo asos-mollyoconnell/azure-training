@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application.CanonicalCustomer.GetById;
 using Application.Customers.GetById;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
+using Application.CanonicalCustomer.Queries.GetById;
 
 namespace Application.Extensions
 {
