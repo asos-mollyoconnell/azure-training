@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.CanonicalCustomer.Contracts;
+﻿using Application.CanonicalCustomer.Contracts;
 using AutoMapper;
 using CanonicalCustomerData;
-using CustomerData.Models;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -26,9 +20,9 @@ namespace Infrastructure.CanonicalCustomer
             _logger = logger;
         }
 
-        public CanonicalCustomerModel GetCustomerById(int id)
+        public async Task<CanonicalCustomerModel> GetCustomerById(int id)
         {
-            var customer = _context.CanonicalCustomers.Single(c => c.Id == id);
+            var customer = await _context.CanonicalCustomers.SingleAsync(c => c.Id == id);
             _logger.LogInformation($"got {nameof(CanonicalCustomer)} by {id}");
 
             var mappedCustomer = _mapper.Map<CanonicalCustomerModel>(customer);
@@ -37,12 +31,12 @@ namespace Infrastructure.CanonicalCustomer
             return mappedCustomer;
         }
 
-        public CanonicalCustomerModel InsertCustomer(CanonicalCustomerModel canonicalCustomer)
+        public async Task<CanonicalCustomerModel> InsertCustomer(CanonicalCustomerModel canonicalCustomer)
         {
             _logger.LogInformation($"creating {nameof(CanonicalCustomer)}");
             var customer = _mapper.Map<CanonicalCustomerData.Models.CanonicalCustomer>(canonicalCustomer);
-
-            _context.CanonicalCustomers.Add(customer);
+            
+            await _context.CanonicalCustomers.AddAsync(customer);
             _logger.LogInformation($"adding {nameof(CanonicalCustomer)} to database");
 
             if (_context.SaveChanges() > 0) _logger.LogInformation($"added {nameof(CanonicalCustomer)} with id {customer.Id}");

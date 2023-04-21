@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Customers.Contracts;
+using Application.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -26,7 +27,7 @@ namespace Application.Customers.GetById
             try
             {
                 _logger.LogInformation($"getting customer with id {request.Id}");
-                var customer = _customerRepository.GetCustomerById(request.Id);
+                var customer = await _customerRepository.GetCustomerById(request.Id);
 
                 _logger.LogInformation($"customer with id {request.Id} found");
 
@@ -34,8 +35,9 @@ namespace Application.Customers.GetById
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogError($"no customer found with Id {request.Id}", ex.Message);
-                throw ex;
+                string message = $"no customer found with Id {request.Id}";
+                _logger.LogError(message, ex);
+                throw new EntityNotFoundException(message, ex);
             }
         }
     }

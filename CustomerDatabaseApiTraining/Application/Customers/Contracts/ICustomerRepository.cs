@@ -9,6 +9,6 @@ namespace Application.Customers.Contracts
 {
     public interface ICustomerRepository
     {
-        CustomerModel GetCustomerById(int id);
+        Task<CustomerModel> GetCustomerById(int id);
     }
 }

@@ -12,7 +12,7 @@ namespace Application.CanonicalCustomer.Commands.InsertCanonicalCustomer
 {
     public class InsertCanonicalCustomerHandler : IRequestHandler<InsertCanonicalCustomerRequest, InsertCanonicalCustomerResponse>
     {
-        private ICanonicalCustomerRepository _repository;
+        private readonly ICanonicalCustomerRepository _repository;
         private readonly ILogger<InsertCanonicalCustomerHandler> _logger;
 
         public InsertCanonicalCustomerHandler(ICanonicalCustomerRepository repository, ILogger<InsertCanonicalCustomerHandler> logger)
@@ -27,7 +27,7 @@ namespace Application.CanonicalCustomer.Commands.InsertCanonicalCustomer
             try
             {
                 _logger.LogInformation($"adding customer with id {request.Customer.Id} begun at {DateTime.Now.ToShortTimeString()}");
-                var customer = _repository.InsertCustomer(request.Customer);
+                var customer = await _repository.InsertCustomer(request.Customer);
 
                 _logger.LogInformation($"customer added at {DateTime.Now.ToShortTimeString()}");
                 return new InsertCanonicalCustomerResponse(customer);

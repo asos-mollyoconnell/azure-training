@@ -29,7 +29,7 @@ namespace Application.CanonicalCustomer.Queries.GetById
             try
             {
                 _logger.LogInformation($"getting canonical customer with id {request.Id}");
-                var customer = _canonicalCustomerRepository.GetCustomerById(request.Id);
+                var customer = await _canonicalCustomerRepository.GetCustomerById(request.Id);
 
                 _logger.LogInformation($"canonical customer with id {request.Id} found");
 

@@ -9,8 +9,8 @@ namespace Application.CanonicalCustomer.Contracts
 {
     public interface ICanonicalCustomerRepository
     {
-         CanonicalCustomerModel GetCustomerById(int id);
-         CanonicalCustomerModel InsertCustomer(CanonicalCustomerModel canonicalCustomer); 
-         Task UpdateCustomerAsync(CanonicalCustomerModel requestCustomer);
+        Task<CanonicalCustomerModel> GetCustomerById(int id);
+        Task<CanonicalCustomerModel> InsertCustomer(CanonicalCustomerModel canonicalCustomer);
+        Task UpdateCustomerAsync(CanonicalCustomerModel requestCustomer);
     }
 }

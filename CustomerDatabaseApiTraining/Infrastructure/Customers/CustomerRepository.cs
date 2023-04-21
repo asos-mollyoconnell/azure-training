@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Customers.Contracts;
+﻿using Application.Customers.Contracts;
 using AutoMapper;
 using CustomerData;
 using Domain.Models;
@@ -25,12 +20,12 @@ namespace Infrastructure.Customer
             _logger = logger;
         }
 
-        public CustomerModel GetCustomerById(int id)
+        public async Task<CustomerModel> GetCustomerById(int id)
         {
-            var customer = _customerDbContext.Customers
+             var customer = await _customerDbContext.Customers
                 .Include(c => c.Address)
                 .Include(c => c.Contact)
-                .Single(c => c.Id == id);
+                .SingleAsync(c => c.Id == id);
             _logger.LogInformation($"got customers by {id}");
 
             var customerModel = _mapper.Map<CustomerModel>(customer);
