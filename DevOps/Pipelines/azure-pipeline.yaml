@@ -1,0 +1,39 @@
+name: asos-sct-onboarding-goliath-moconnell
+
+trigger:
+  branches:
+    include:
+      - main
+      - feature/*
+
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+    vmImage: ubuntu-latest
+
+variables:
+  slnPath: $(Build.SourcesDirectory)/Source/CustomerDatabaseApiTraining/CustomerDatabaseApiTraining.sln
+
+steps: 
+- task: DotNetCoreCLI@2
+  displayName: 'Restore Nuget Packages'
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build Solution'
+  inputs:
+    command : 'build'
+    projects: '$(slnPath)'
+    arguments: '-c Release'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run Unit Tests'
+  inputs:
+    command: 'test'
+    projects: '$(slnPath)'
