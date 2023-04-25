@@ -1,4 +1,6 @@
-﻿using Application.Customers.GetById;
+﻿using System.Net;
+using Application.Customers.GetById;
+using Application.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,18 +25,23 @@ namespace CustomerWebApi.Controllers
             try
             {
                 var request = new GetCustomerByIdRequest(id);
-                var response = await _mediator.Send(request);
+                var response = await _mediator.Send(request, HttpContext.RequestAborted);
 
-                if (response.Customer is null) return NotFound();
-                
+               // if (response.Customer is null) return NotFound();
+
 
                 return Ok(response.Customer);
             }
-            catch (InvalidOperationException ex)
+            catch (EntityNotFoundException ex)
             {
                 _logger.LogError($"problem finding customer with id {id}");
-                throw;
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("there was a problem getting a response");
+                return StatusCode((int)HttpStatusCode.ServiceUnavailable);
             }
         }
+        }
     }
-}

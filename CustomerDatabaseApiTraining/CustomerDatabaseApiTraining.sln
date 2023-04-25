@@ -25,7 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7ED36442
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationTests", "ApplicationTests\ApplicationTests.csproj", "{07593BBF-D2D5-425E-8FDA-E7E894030B99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureTests", "InfrastructureTests\InfrastructureTests.csproj", "{42C4398C-43E0-4CC6-964D-CFEA975C8B8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureTests", "InfrastructureTests\InfrastructureTests.csproj", "{42C4398C-43E0-4CC6-964D-CFEA975C8B8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerWebApiTests", "CustomerWebApiTests\CustomerWebApiTests.csproj", "{F5D6AD68-D3C6-432A-8338-EAFBB8053FDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{42C4398C-43E0-4CC6-964D-CFEA975C8B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42C4398C-43E0-4CC6-964D-CFEA975C8B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42C4398C-43E0-4CC6-964D-CFEA975C8B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D6AD68-D3C6-432A-8338-EAFBB8053FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D6AD68-D3C6-432A-8338-EAFBB8053FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D6AD68-D3C6-432A-8338-EAFBB8053FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D6AD68-D3C6-432A-8338-EAFBB8053FDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{E01E1898-7010-46DD-B728-41AA951C1B6A} = {069E3C48-B435-4314-8BB1-D6D888214245}
 		{07593BBF-D2D5-425E-8FDA-E7E894030B99} = {7ED36442-F891-4F2F-AFEC-D4A2C97E2C8F}
 		{42C4398C-43E0-4CC6-964D-CFEA975C8B8F} = {7ED36442-F891-4F2F-AFEC-D4A2C97E2C8F}
+		{F5D6AD68-D3C6-432A-8338-EAFBB8053FDF} = {7ED36442-F891-4F2F-AFEC-D4A2C97E2C8F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B07B780-FFD2-4B3E-B9B8-35DAAC19B26F}

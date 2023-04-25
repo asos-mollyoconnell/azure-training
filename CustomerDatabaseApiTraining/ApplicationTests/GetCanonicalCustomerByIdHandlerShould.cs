@@ -45,6 +45,7 @@ namespace ApplicationTests
 
             //  assert
             Assert.Equal(expectedCustomer.FullName, actualResult.Result.Customer.FullName);
+            Assert.Equal(TaskStatus.RanToCompletion, actualResult.Status);
         }
 
         [Fact]
@@ -73,7 +74,7 @@ namespace ApplicationTests
         }
 
         [Fact]
-        public async void LogInformation_WhenHandlerCalled_GivenValidRequest()
+        public void LogInformation_WhenHandlerCalled_GivenValidRequest()
         {
             // arrange 
             var expectedCustomer = new CanonicalCustomerModel { Id = 1, FullName = "Molly O'Connell" };

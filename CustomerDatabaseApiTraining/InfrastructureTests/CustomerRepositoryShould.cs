@@ -26,7 +26,7 @@ namespace InfrastructureTests
         }
 
         [Fact]
-        public void ReturnCustomer_whenGetCustomerById_GivenValidId()
+        public void ReturnCustomer_WhenGetCustomerById_GivenValidId()
         {
             // arrange 
             int id = 1;
@@ -44,6 +44,8 @@ namespace InfrastructureTests
 
             // assert
             Assert.Equal("Molly", actualResult.Result.Forename);
+            Assert.IsType<Task<CustomerModel>>(actualResult);
+
         }
 
 

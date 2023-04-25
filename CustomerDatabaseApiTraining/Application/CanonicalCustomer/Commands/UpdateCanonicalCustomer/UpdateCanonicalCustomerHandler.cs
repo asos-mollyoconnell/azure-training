@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.CanonicalCustomer.Contracts;
+﻿using Application.CanonicalCustomer.Contracts;
 using Application.Exceptions;
-using CanonicalCustomerData;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
