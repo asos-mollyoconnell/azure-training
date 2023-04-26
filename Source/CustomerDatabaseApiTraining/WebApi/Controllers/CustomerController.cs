@@ -27,10 +27,7 @@ namespace CustomerWebApi.Controllers
                 var request = new GetCustomerByIdRequest(id);
                 var response = await _mediator.Send(request, HttpContext.RequestAborted);
 
-               // if (response.Customer is null) return NotFound();
-
-
-                return Ok(response.Customer);
+                return Ok(response);
             }
             catch (EntityNotFoundException ex)
             {

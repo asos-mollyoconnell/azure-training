@@ -102,6 +102,27 @@ namespace InfrastructureTests
             Assert.Equal("Jesse Eisenpurrg", getByIdResult.Result.FullName);
         }
 
+        [Fact]
+        public void ThrowInvalidOperationException_WhenUpdatedCustomerAsync_GivenCustomerAlreadyExists()
+        {
+            //arrange
+            var customerToUpdate = new CanonicalCustomerModel() { Id = 4, FullName = "Jesse Eisenpurrg" };
+
+            var customers = new List<CanonicalCustomer>()
+            {
+                new CanonicalCustomer() { Id = 1, FullName = "Molly" },
+                new CanonicalCustomer() { Id = 2, FullName = "Miranda Clawsgrove" },
+                new CanonicalCustomer() {Id = 3, FullName = "Jesse"}
+            };
+            var _sut = CreateRepository(customers);
+            //act
+            Task task() => _sut.UpdateCustomerAsync(customerToUpdate);
+
+            //assert
+            Assert.ThrowsAsync<InvalidOperationException>(task);
+
+        }
+
 
         public void Dispose() => Teardown();
 

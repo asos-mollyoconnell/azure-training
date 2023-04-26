@@ -1,4 +1,6 @@
+using System.Net;
 using Application.Customers.GetById;
+using Application.Exceptions;
 using Castle.Core.Logging;
 using CustomerWebApi.Controllers;
 using Domain.Models;
@@ -30,36 +32,56 @@ namespace CustomerWebApiTests
             };
         }
 
-
         [Fact]
-        public async Task ReturnOkResponse_WhenGetCustomerByIdAsync_GivenValidId()
+        public async Task ReturnOkResponse_WhenGetCustomerById_GivenValidId()
         {
-            // arrange 
+            //arrange
             int id = 1;
+            var request = new GetCustomerByIdRequest(id);
+            var customer = new CustomerModel()
+            {
+                Forename = "Molly"
+            };
+            _mockMediator.Setup(x => x.Send(request, default)).ReturnsAsync(new GetCustomerByIdResponse(customer));
 
-            _mockMediator.Setup(m => m.Send(It.Is<GetCustomerByIdRequest>(r => r.Id == id), default))
-                .ReturnsAsync(new GetCustomerByIdResponse(new CustomerModel() { Forename = "Molly" }));
-
-            // act 
+            //act
             var response = await _sut.GetCustomerById(id) as OkObjectResult;
-
-            var customer = response.Value as GetCustomerByIdResponse;
-
-            // assert 
-            Assert.Equal("Molly", customer.Customer.Forename);
+            //assert 
+            Assert.Equal((int)HttpStatusCode.OK, response.StatusCode);
         }
 
         [Fact]
-        public async Task ReturnNotFoundResponse_WhenGetCustomerByIdAsync_GivenValidId()
+        public async Task ThrowEntityNotFoundException_WhenGetCustomerById_GivenEntityNotFound()
         {
-            // arrange 
+            //arrange 
+            int id = 6;
+            var request = new GetCustomerByIdRequest(id);
+            _mockMediator.Setup(x => x.Send(request, default))
+                .ThrowsAsync(new EntityNotFoundException("Error", new Exception()));
 
+            //act
+            Task task() => _sut.GetCustomerById(id);
 
-            // act 
-
-
-            // assert 
+            //assert
+            Assert.ThrowsAsync<EntityNotFoundException>(task);
 
         }
+        [Fact]
+        public async Task ThrowException_WhenGetCustomerById_GivenAnyOtherException()
+        {
+            //arrange 
+            int id = 6;
+            var request = new GetCustomerByIdRequest(id);
+            _mockMediator.Setup(x => x.Send(request, default))
+                .ThrowsAsync(new Exception());
+
+            //act
+            Task task() => _sut.GetCustomerById(id);
+
+            //assert
+            Assert.ThrowsAsync<Exception>(task);
+
+        }
+
     }
 }

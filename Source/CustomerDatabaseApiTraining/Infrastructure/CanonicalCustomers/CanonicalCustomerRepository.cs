@@ -57,7 +57,8 @@ namespace Infrastructure.CanonicalCustomer
 
             var mappedCustomer = _mapper.Map<CanonicalCustomerData.Models.CanonicalCustomer>(requestCustomer);
             _logger.LogInformation($"mapped {nameof(CanonicalCustomerModel)} to {nameof(CanonicalCustomer)}");
-
+            
+            _context.ChangeTracker.Clear();
             _context.Update(mappedCustomer);
             _logger.LogInformation($"{nameof(CanonicalCustomer)} has been updated");
 
