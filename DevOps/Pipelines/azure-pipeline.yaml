@@ -16,7 +16,7 @@ pool:
 
 variables:
   slnPath: $(Build.SourcesDirectory)/Source/CustomerDatabaseApiTraining/CustomerDatabaseApiTraining.sln
-  customerApiPath: $(Build.SourcesDirectory)/Source/CustomerDatabaseApiTraining/CustomerApi.csproj
+  customerApiPath: $(Build.SourcesDirectory)/Source/CustomerDatabaseApiTraining/WebApi/CustomerWebApi.csproj
   canonicalCustomerApiPath: $(Build.SourcesDirectory)/Source/CustomerDatabaseApiTraining/CanonicalCustomerApi.csproj
 
 steps: 
