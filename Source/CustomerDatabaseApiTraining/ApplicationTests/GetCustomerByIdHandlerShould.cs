@@ -35,7 +35,7 @@ namespace ApplicationTests
             var contact = new ContactModel() { Id = 1, CustomerId = 1, HomeNumber = 1234567890 };
 
             var expectedCustomer = new CustomerModel()
-            { Id = 1, Address = address, Contact = contact, DateOfBirth = DateTime.Parse("13/12/1989") };
+            { Id = 1, Address = address, Contact = contact, DateOfBirth = DateTime.Parse("12/13/1989") };
 
 
             _stubCustomerRepository.Setup(x => x.GetCustomerById(id)).ReturnsAsync(expectedCustomer);
