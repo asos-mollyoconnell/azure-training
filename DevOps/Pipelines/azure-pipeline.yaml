@@ -16,6 +16,8 @@ pool:
 
 variables:
   slnPath: $(Build.SourcesDirectory)/Source/CustomerDatabaseApiTraining/CustomerDatabaseApiTraining.sln
+  customerApiPath: $(Build.SourcesDirectory)/Source/CustomerDatabaseApiTraining/CustomerApi.csproj
+  canonicalCustomerApiPath: $(Build.SourcesDirectory)/Source/CustomerDatabaseApiTraining/CanonicalCustomerApi.csproj
 
 steps: 
 - task: DotNetCoreCLI@2
@@ -36,4 +38,20 @@ steps:
   displayName: 'Run Unit Tests'
   inputs:
     command: 'test'
-    projects: '$(slnPath)'
+    projects: '**/*Tests.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Dotnet Publish Customer Api'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '$(customerApiPath)'
+    arguments: '-c Release --output $(Build.ArtifactStagingDirectory)/api/Customer/'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Dotnet Publish Canonical Customer Api'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '$(canonicalCustomerApiPath)'
+    arguments: '-c Release --output $(Build.ArtifactStagingDirectory)/api/Customer/'
